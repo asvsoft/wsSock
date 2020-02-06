@@ -10,13 +10,12 @@ package CARROS;
  * @author adolfoyoyo
  */
 
-import main.dbCon;
-import main.mainBk;
+//import main.dbCon;
 
-public class main extends mainBk{
+public class main {
 
-    public main(dbCon bd) throws Exception {
-        super(bd);
+    public main() throws Exception {
+//        super(bd);
     }
 
     

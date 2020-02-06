@@ -11,7 +11,7 @@ import main.*;
  *
  * @author adolfoyoyo
  */
-public class main extends mainBk {
+public class main extends mainClass {
     
 
     public main(dbCon bd) throws Exception {

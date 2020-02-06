@@ -47,7 +47,7 @@ public class dbCon {
         inData = new JSONObject(datos);
         String URL = datConx.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         String bdatos = "dbsql-01.db";
-        String strCon = "jdbc:sqlite:" + URL  + bdatos;
+        String strCon = "jdbc:sqlite:" + URL + bdatos;
         Class.forName("org.sqlite.JDBC");
         conxSrv = DriverManager.getConnection(strCon);
         conxSrv.setAutoCommit(false);
@@ -203,19 +203,19 @@ public class dbCon {
     }
 
     public JSONObject ejeQry(Connection conx, String eje, String[] flds) throws Exception {
-        return ejeQry(conx ,wait ,0 ,eje, flds);
+        return ejeQry(conx, wait, 0, eje, flds);
     }
 
     //// A BDatos 1
-    public JSONObject ejeQry(int mxRegs ,String eje, String[] flds) throws Exception {
-        return ejeQry(conxDat ,wait ,mxRegs ,eje, flds);
+    public JSONObject ejeQry(int mxRegs, String eje, String[] flds) throws Exception {
+        return ejeQry(conxDat, wait, mxRegs, eje, flds);
     }
 
     //// Con numero de Registros
 //    public JSONArray pejeQry(String eje, String[] flds, int mxRegs, int numConx) throws Exception {        
 //        return pejeQry(eje, flds, mxRegs, 10, numConx );
 //    }
-    public JSONObject ejeQry(Connection tconx, int espera, int mxRegs ,String eje, String[] flds) throws Exception {
+    public JSONObject ejeQry(Connection tconx, int espera, int mxRegs, String eje, String[] flds) throws Exception {
         PreparedStatement ps = tconx.prepareStatement(eje);
         ponParam(ps, flds);
         ps.setQueryTimeout(wait);
@@ -254,11 +254,27 @@ public class dbCon {
             }
             aDatos.add(aRegis);
         }
-        JSTable.put("datos", aDatos);        
+        JSTable.put("datos", aDatos);
         //JSTable.put("nRegis", regis);
         return JSTable;
     }
 
+    public int ejePs(String eje, String[] flds) throws Exception {
+        return ejePs(eje, flds, conxDat);
+    }
+
+    public int ejePs(String eje, String[] flds, Connection tconx) throws Exception {
+        PreparedStatement ps = tconx.prepareStatement(eje);
+        ponParam(ps, flds);
+
+        int regre = ps.executeUpdate();
+        ps.close();
+        return regre;
+    }
+
+//        public int ejePs(String eje, String[] flds) throws Exception {
+//        return ejePs(eje, flds, 1);
+//    }
 //    public JSONObject ejeQry(Connection tconx, int mxRegs, int espera, String eje, String[] flds) throws Exception {
 //
 //        String strJSON;
@@ -319,20 +335,19 @@ public class dbCon {
 //        strJSON = strJSON + "] \n }";
 //        return new JSONObject(strJSON);
 //    }
-    public int ejePs(String eje, String[] flds) throws Exception {
-        return ejePs(eje, flds, 1);
-    }
-
-    public int ejePs(String eje, String[] flds, int numConx) throws Exception {
-        Connection tconx = Connection.class.cast(conex[numConx]);
-        PreparedStatement ps = tconx.prepareStatement(eje);
-        ponParam(ps, flds);
-
-        int regre = ps.executeUpdate();
-        ps.close();
-        return regre;
-    }
-
+//    public int ejePs(String eje, String[] flds) throws Exception {
+//        return ejePs(eje, flds, 1);
+//    }
+//
+//    public int ejePs(String eje, String[] flds, int numConx) throws Exception {
+//        Connection tconx = Connection.class.cast(conex[numConx]);
+//        PreparedStatement ps = tconx.prepareStatement(eje);
+//        ponParam(ps, flds);
+//
+//        int regre = ps.executeUpdate();
+//        ps.close();
+//        return regre;
+//    }
     public void ponParam(PreparedStatement ps, String[] flds) throws Exception {
         int ix;
         String Fld, Tipo;
@@ -407,9 +422,9 @@ public class dbCon {
 
     public int JSTblgetNCampo(JSONObject tabla, String nCampo) throws Exception {
         int reg = -1;
-        String[] nCampos= (String[]) tabla.get("cols");
+        String[] nCampos = (String[]) tabla.get("cols");
         //Arrays.asList(nCampos).forEach();        
-        
+
         for (reg = 0; reg < nCampos.length; reg++) {
             if (nCampos[reg].equals(nCampo)) {
                 break;

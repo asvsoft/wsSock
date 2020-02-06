@@ -11,12 +11,12 @@ package main;
  */
 import org.json.JSONObject;
 
-public class mainBk {
+public class mainClass {
 
     public dbCon bd;    
     public String eje;
 
-    public mainBk(dbCon bd) throws Exception {
+    public mainClass(dbCon bd) throws Exception {
         this.bd = bd;        
     }
 

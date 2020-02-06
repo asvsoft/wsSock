@@ -6,14 +6,14 @@
 package CLIENTES;
 
 import main.dbCon;
-import main.mainBk;
+import main.mainClass;
 import org.json.JSONObject;
 
 /**
  *
  * @author adolfoyoyo
  */
-public class directo extends mainBk {
+public class directo extends mainClass {
 
 
     public directo(dbCon bd) throws Exception {

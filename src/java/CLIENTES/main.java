@@ -12,25 +12,26 @@ import org.json.JSONObject;
  *
  * @author adolfoyoyo
  */
-public class main extends mainBk {
+public class main extends mainClass {
 
     public main(dbCon bd) throws Exception {
         super(bd);
     }
 
     public void test() throws Exception {
-        String dStr = (String) bd.inData.get("dString");
-        String dNum = (String) bd.inData.get("dNumber");
-        int Num = Integer.parseInt(dNum);
-        Num = Num * 2;
-        dStr = dStr + " --> CLIENTES. macaco .test ";
-
-        if (Num == 0) {
-            throw new Exception("Numero no puede ser cero-CERO");
-        }
-        
-        bd.outData.put("dStr", dStr);
-        bd.outData.put("dNum", Num);
+    
+//        String dStr = (String) bd.inData.get("dString");
+//        String dNum = (String) bd.inData.get("dNumber");
+//        int Num = Integer.parseInt(dNum);
+//        Num = Num * 2;
+//        dStr = dStr + " --> CLIENTES. macaco .test ";
+//
+//        if (Num == 0) {
+//            throw new Exception("Numero no puede ser cero-CERO");
+//        }
+//        
+//        bd.outData.put("dStr", dStr);
+//        bd.outData.put("dNum", Num);
     }
     
 

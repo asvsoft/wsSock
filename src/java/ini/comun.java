@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Calendar;
 import main.dbCon;
-import main.mainBk;
+import main.mainClass;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -18,7 +18,7 @@ import org.json.JSONObject;
  *
  * @author adolfoyoyo
  */
-public class comun extends mainBk {
+public class comun extends mainClass {
 
     public comun(dbCon bd) throws Exception {
         super(bd);
